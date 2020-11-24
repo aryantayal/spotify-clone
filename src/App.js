@@ -9,12 +9,12 @@ const spotify = new SpotifyWebApi();
 
 function App() {
 
-const [token, setToken] = useState(null);
-const [{user}, dispatch] = useDataLayerValue();
+// const [token, setToken] = useState(null);
+const [{user, token}, dispatch] = useDataLayerValue();
 
 useEffect( () => {
   const hash = getTokenFromUrl();
-
+  console.log(hash);
   window.location.hash = "";
   const _token = hash.access_token;
   if(_token){
@@ -34,15 +34,11 @@ useEffect( () => {
       })
     });
   }
-}, []);
+}, [token, dispatch]);
+console.log("token", token);
 
-  return (
-    //BEM
-    <div className="app">
-      {!token && <Login />}
-      {token && <Player spotify={spotify}  />}
-    </div>
-  );
+  return (<div className="app">
+    {token ? <Player spotify = {spotify}/>: <Login />}</div>);
 }
 
 export default App;
