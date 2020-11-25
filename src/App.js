@@ -38,7 +38,9 @@ useEffect( () => {
 console.log("token", token);
 
   return (<div className="app">
-    {token ? <Player spotify = {spotify}/>: <Login />}</div>);
+    {token ? <Player spotify = {spotify}/>: <Login />}
+          </div>
+    );
 }
 
 export default App;
