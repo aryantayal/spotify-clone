@@ -33,6 +33,13 @@ useEffect( () => {
         user: user,
       })
     });
+
+    spotify.getUserPlaylists().then((playlists)=> {
+      dispatch({
+        type: "SET_PLAYLISTS",
+        playlists: playlists,
+      })
+    });
   }
 }, [token, dispatch]);
 console.log("token", token);
